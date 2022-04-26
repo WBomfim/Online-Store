@@ -56,7 +56,7 @@ class Home extends Component {
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
-        { productsList.map((product) => (
+        {productsList.length === 0 ? <p>Nenhum produto foi encontrado</p> : productsList.map((product) => (
           <ProductsList productsList={ product } key={ product.id } />
         )) }
         <div>
