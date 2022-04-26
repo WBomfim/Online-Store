@@ -5,7 +5,7 @@ class Categorias extends Component {
   constructor() {
     super();
     this.state = {
-      categorias: []
+      categorias: [],
     };
   }
 
@@ -20,9 +20,19 @@ class Categorias extends Component {
   }
 
   render() {
+    const { categorias } = this.state;
+
     return (
       <div className="Categorias">
         <h2>Categorias</h2>
+        {categorias.map((categoria) => (
+          <button
+            type="button"
+            key={ categoria.id }
+            data-testid="category"
+          >
+            { categoria.name }
+          </button>))}
       </div>
     );
   }
