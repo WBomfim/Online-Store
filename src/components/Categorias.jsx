@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getCategories } from '../services/api';
+import './Categorias.css';
 
 class Categorias extends Component {
   constructor() {
