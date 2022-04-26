@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ProductsList from './ProductsList';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
@@ -27,10 +28,11 @@ class Home extends Component {
   }
 
   render() {
-    const { searchInput } = this.state;
+    const { searchInput, productsList } = this.state;
     return (
       <div>
         <input
+          data-testid="query-input"
           type="text"
           name="searchInput"
           value={ searchInput }
@@ -38,6 +40,7 @@ class Home extends Component {
         />
         <button
           type="button"
+          data-testid="query-button"
           onClick={ this.handleSearch }
         >
           Pesquisar Produto
@@ -49,9 +52,9 @@ class Home extends Component {
             Carrinho
           </Link>
         </button>
-        <h1 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
+        { productsList.map((product) => (
+          <ProductsList productsList={ product } key={ product.id } />
+        )) }
       </div>
     );
   }
