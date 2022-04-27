@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 class ShowCart extends Component {
   render() {
     const { productsList } = this.props;
+
     return (
-      <div data-testid="product">
-        <div data-testid="shopping-cart-product-name">
-          <h1>
-            { productsList.title }
-          </h1>
-        </div>
+      <>
+        <samp data-testid="shopping-cart-product-quantity">0</samp>
+        <h2 data-testid="shopping-cart-product-name">
+          { productsList.title }
+        </h2>
         <img
           src={ productsList.thumbnail }
           alt={ productsList.title }
@@ -18,7 +18,7 @@ class ShowCart extends Component {
         <h3>
           { productsList.price }
         </h3>
-      </div>
+      </>
     );
   }
 }

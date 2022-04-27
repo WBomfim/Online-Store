@@ -33,22 +33,20 @@ class UserCart extends Component {
     const { productsCart, noProducts } = this.state;
     return (
       <div>
-        <div>
-          { noProducts
-            ? (
-              <h3
-                data-testid="shopping-cart-empty-message"
-              >
-                Seu carrinho está vazio
-              </h3>
-            )
-            : productsCart.map((product) => (
-              <ShowCart
-                key={ product.id }
-                productsList={ product }
-              />
-            ))}
-        </div>
+        { noProducts
+          ? (
+            <h3
+              data-testid="shopping-cart-empty-message"
+            >
+              Seu carrinho está vazio
+            </h3>
+          )
+          : productsCart.map((product) => (
+            <ShowCart
+              key={ product.id }
+              productsList={ product }
+            />
+          ))}
       </div>
     );
   }
