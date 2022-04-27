@@ -17,7 +17,6 @@ class Categorias extends Component {
   async fetchCategories() {
     const response = await getCategories();
     this.setState({ categorias: response });
-    console.log(response);
   }
 
   render() {
