@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getCartItems } from '../services/userCart';
-import ProductsList from '../components/ProductsList';
+import ShowCart from '../components/ShowCart';
 
 class UserCart extends Component {
   constructor() {
@@ -43,7 +43,7 @@ class UserCart extends Component {
               </h3>
             )
             : productsCart.map((product) => (
-              <ProductsList
+              <ShowCart
                 key={ product.id }
                 productsList={ product }
               />

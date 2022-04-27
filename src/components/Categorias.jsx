@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { getCategories } from '../services/api';
+import ProductsList from './ProductsList';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import './Categorias.css';
 
 class Categorias extends Component {
@@ -7,11 +8,27 @@ class Categorias extends Component {
     super();
     this.state = {
       categorias: [],
+      produtos: [],
+      semProdutos: false,
     };
   }
 
   componentDidMount() {
     this.fetchCategories();
+  }
+
+  async handleClick(id) {
+    const products = await getProductsFromCategoryAndQuery(id, '');
+    if (!products) {
+      this.setState({
+        semProdutos: true,
+      });
+    } else {
+      this.setState({
+        semProdutos: false,
+        produtos: products.results,
+      });
+    }
   }
 
   async fetchCategories() {
@@ -20,7 +37,7 @@ class Categorias extends Component {
   }
 
   render() {
-    const { categorias } = this.state;
+    const { categorias, produtos, semProdutos } = this.state;
 
     return (
       <div className="Categorias">
@@ -29,10 +46,14 @@ class Categorias extends Component {
           <button
             type="button"
             key={ categoria.id }
+            onClick={ () => this.handleClick(categoria.id) }
             data-testid="category"
           >
             { categoria.name }
           </button>))}
+        {semProdutos ? null : produtos.map((produto) => (
+          <ProductsList productsList={ produto } key={ produto.id } />
+        ))}
       </div>
     );
   }

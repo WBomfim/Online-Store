@@ -5,7 +5,7 @@ class ProductsList extends Component {
   render() {
     const { productsList, addToCart } = this.props;
     return (
-      <div data-testid="product" key={ productsList.id }>
+      <div data-testid="product">
         <h2 data-testid="shopping-cart-product-name">
           { productsList.title }
         </h2>
