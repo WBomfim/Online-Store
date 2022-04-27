@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
-import ProductsList from './ProductsList';
-import Categorias from './Categorias';
+import ProductsList from '../components/ProductsList';
+import Categorias from '../components/Categorias';
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
+      noProducts: false,
       productsList: [],
       searchInput: '',
     };
@@ -16,9 +17,16 @@ class Home extends Component {
   handleSearch = async () => {
     const { searchInput } = this.state;
     const products = await getProductsFromCategoryAndQuery('', searchInput);
-    this.setState({
-      productsList: products.results,
-    });
+    if (!products) {
+      this.setState({
+        noProducts: true,
+      });
+    } else {
+      this.setState({
+        noProducts: false,
+        productsList: products.results,
+      });
+    }
   }
 
   handleChange = ({ target }) => {
@@ -29,7 +37,7 @@ class Home extends Component {
   }
 
   render() {
-    const { searchInput, productsList } = this.state;
+    const { searchInput, productsList, noProducts } = this.state;
     return (
       <div>
         <input
@@ -56,7 +64,7 @@ class Home extends Component {
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
-        {productsList.length === 0
+        {noProducts
           ? <p>Nenhum produto foi encontrado</p>
           : productsList.map((product) => (
             <ProductsList productsList={ product } key={ product.id } />
