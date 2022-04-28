@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getCartItems } from '../services/userCart';
+import { getCartItems, removeItemCart } from '../services/userCart';
 
 class ShowCart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numberItem: '',
+      numberItem: 0,
     };
   }
 
@@ -23,13 +23,46 @@ class ShowCart extends Component {
     });
   }
 
+  handleQuantityPlus = () => {
+    this.setState((prevState) => ({
+      numberItem: prevState.numberItem + 1,
+    }));
+  }
+
+  handleQuantityMinus = () => {
+    const { numberItem } = this.state;
+    if (numberItem < 2) {
+      this.setState(() => ({
+        numberItem: 1,
+      }));
+    } else {
+      this.setState((prevState) => ({
+        numberItem: prevState.numberItem - 1,
+      }));
+    }
+  }
+
   render() {
     const { numberItem } = this.state;
     const { productsList } = this.props;
 
     return (
       <>
+        <button
+          type="button"
+          data-testid="product-decrease-quantity"
+          onClick={ this.handleQuantityMinus }
+        >
+          -
+        </button>
         <span data-testid="shopping-cart-product-quantity">{ numberItem }</span>
+        <button
+          type="button"
+          data-testid="product-increase-quantity"
+          onClick={ this.handleQuantityPlus }
+        >
+          +
+        </button>
         <h2 data-testid="shopping-cart-product-name">
           { productsList.title }
         </h2>
@@ -40,6 +73,12 @@ class ShowCart extends Component {
         <h3>
           { productsList.price }
         </h3>
+        <button
+          type="button"
+          onClick={ () => removeItemCart(productsList) }
+        >
+          Remover Item
+        </button>
       </>
     );
   }
