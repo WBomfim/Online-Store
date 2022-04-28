@@ -36,6 +36,20 @@ class Home extends Component {
     });
   }
 
+  handleCategory = async (id) => {
+    const products = await getProductsFromCategoryAndQuery(id, '');
+    if (!products) {
+      this.setState({
+        noProducts: true,
+      });
+    } else {
+      this.setState({
+        noProducts: false,
+        productsList: products.results,
+      });
+    }
+  }
+
   render() {
     const { searchInput, productsList, noProducts } = this.state;
     return (
@@ -70,7 +84,7 @@ class Home extends Component {
             <ProductsList productsList={ product } key={ product.id } />
           )) }
         <div>
-          <Categorias />
+          <Categorias handleCategory={ this.handleCategory } />
         </div>
       </div>
     );

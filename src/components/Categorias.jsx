@@ -1,34 +1,18 @@
 import React, { Component } from 'react';
-import ProductsList from './ProductsList';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import PropTypes from 'prop-types';
+import { getCategories } from '../services/api';
 import './Categorias.css';
 
 class Categorias extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       categorias: [],
-      produtos: [],
-      semProdutos: false,
     };
   }
 
   componentDidMount() {
     this.fetchCategories();
-  }
-
-  async handleClick(id) {
-    const products = await getProductsFromCategoryAndQuery(id, '');
-    if (!products) {
-      this.setState({
-        semProdutos: true,
-      });
-    } else {
-      this.setState({
-        semProdutos: false,
-        produtos: products.results,
-      });
-    }
   }
 
   async fetchCategories() {
@@ -37,7 +21,8 @@ class Categorias extends Component {
   }
 
   render() {
-    const { categorias, produtos, semProdutos } = this.state;
+    const { categorias } = this.state;
+    const { handleCategory } = this.props;
 
     return (
       <div className="Categorias">
@@ -46,17 +31,18 @@ class Categorias extends Component {
           <button
             type="button"
             key={ categoria.id }
-            onClick={ () => this.handleClick(categoria.id) }
+            onClick={ () => handleCategory(categoria.id) }
             data-testid="category"
           >
             { categoria.name }
           </button>))}
-        {semProdutos ? false : produtos.map((produto) => (
-          <ProductsList productsList={ produto } key={ produto.id } />
-        ))}
       </div>
     );
   }
 }
+
+Categorias.propTypes = {
+  handleCategory: PropTypes.func.isRequired,
+};
 
 export default Categorias;
