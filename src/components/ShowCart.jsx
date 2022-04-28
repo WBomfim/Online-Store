@@ -1,13 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { getCartItems } from '../services/userCart';
 
 class ShowCart extends Component {
-  render() {
+  constructor() {
+    super();
+    this.state = {
+      numberItem: '',
+    };
+  }
+
+  numberItem = () => {
     const { productsList } = this.props;
+    const cartItems = getCartItems();
+    const filteredCartItems = cartItems.filter((item) => item.id === productsList.id);
+    this.setState({
+      numberItem: filteredCartItems.length,
+    });
+  }
+
+  render() {
+    const { numberItem } = this.state;
+    const { productsList } = this.props;
+    // console.log(productsList);
 
     return (
       <>
-        <samp data-testid="shopping-cart-product-quantity">0</samp>
+        <span data-testid="shopping-cart-product-quantity">{ numberItem }</span>
         <h2 data-testid="shopping-cart-product-name">
           { productsList.title }
         </h2>
