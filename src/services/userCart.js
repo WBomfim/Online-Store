@@ -16,7 +16,11 @@ const getCartItems = () => readUserCart();
 
 const removeItemCart = (productId) => {
   const cartItems = readUserCart();
-  const newCartItems = cartItems.filter((item) => item.id !== productId.id);
+  const cartItemProduct = cartItems.filter((element) => element.id === productId.id);
+  cartItemProduct.pop();
+  const cartItemsFilter = cartItems
+    .filter((element) => element.id !== productId.id);
+  const newCartItems = [...cartItemProduct, ...cartItemsFilter];
   localStorage.setItem('userCart', JSON.stringify(newCartItems));
 };
 
