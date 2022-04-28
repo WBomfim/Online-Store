@@ -15,7 +15,7 @@ class UserCart extends Component {
     this.getListCart();
   }
   /*
-  Usamos a seguinte função em getListCart para que retornasse somente 1 array de objetos, se houvessem outros iguais, não criando duplicatas na página de UserCart;
+  Usamos a seguinte função em getListCart para que retornasse somente 1 array de objetos, se houvessem outros iguais, não criando duplicatas na página de UserCart
   link para referencia: https://medium.com/trainingcenter/removendo-objetos-duplicados-de-dentro-de-um-array-usando-set-ef4ea1319f4b
   */
 
