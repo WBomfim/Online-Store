@@ -14,16 +14,26 @@ class UserCart extends Component {
   componentDidMount() {
     this.getListCart();
   }
+  /*
+  Usamos a seguinte função em getListCart para que retornasse somente 1 array de objetos, se houvessem outros iguais, não criando duplicatas na página de UserCart
+  link para referencia: https://medium.com/trainingcenter/removendo-objetos-duplicados-de-dentro-de-um-array-usando-set-ef4ea1319f4b
+  */
 
   getListCart = () => {
     const productsCart = getCartItems();
+    const setItem = new Set();
+    const filterProducts = productsCart.filter((item) => {
+      const duplicateItem = setItem.has(item.id);
+      setItem.add(item.id);
+      return !duplicateItem;
+    });
     if (productsCart.length === 0) {
       this.setState({
         noProducts: true,
       });
     } else {
       this.setState({
-        productsCart,
+        productsCart: filterProducts,
         noProducts: false,
       });
     }
@@ -31,6 +41,7 @@ class UserCart extends Component {
 
   render() {
     const { productsCart, noProducts } = this.state;
+
     return (
       <div>
         { noProducts
@@ -41,9 +52,9 @@ class UserCart extends Component {
               Seu carrinho está vazio
             </h3>
           )
-          : productsCart.map((product) => (
+          : productsCart.map((product, index) => (
             <ShowCart
-              key={ product.id }
+              key={ index }
               productsList={ product }
             />
           ))}

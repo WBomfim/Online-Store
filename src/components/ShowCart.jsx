@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { getCartItems } from '../services/userCart';
 
 class ShowCart extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       numberItem: '',
     };

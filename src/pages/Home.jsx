@@ -104,9 +104,9 @@ class Home extends Component {
         </h1>
         {noProducts
           ? <p>Nenhum produto foi encontrado</p>
-          : productsList.map((product) => (
+          : productsList.map((product, index) => (
             <ProductsList
-              key={ product.id }
+              key={ index }
               productsList={ product }
               addToCart={ this.addItemToCart }
             />
