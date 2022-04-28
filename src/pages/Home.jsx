@@ -42,6 +42,19 @@ class Home extends Component {
     });
   }
 
+  handleCategory = async (id) => {
+    const products = await getProductsFromCategoryAndQuery(id, '');
+    if (!products) {
+      this.setState({
+        noProducts: true,
+      });
+    } else {
+      this.setState({
+        noProducts: false,
+        productsList: products.results,
+      });
+    }
+
   addItemToCart = (product) => {
     addToCart(product);
     this.numberItemsInCart();
@@ -51,6 +64,7 @@ class Home extends Component {
     this.setState({
       numberItemsInCart: getCartItems().length,
     });
+
   }
 
   render() {
@@ -98,7 +112,7 @@ class Home extends Component {
             />
           )) }
         <div>
-          <Categorias />
+          <Categorias handleCategory={ this.handleCategory } />
         </div>
       </div>
     );

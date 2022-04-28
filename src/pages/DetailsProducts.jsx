@@ -21,7 +21,6 @@ class DetailsProducts extends React.Component {
 
     const produtos = await fetch(`https://api.mercadolibre.com/items/${id}`);
     const response = await produtos.json();
-    console.log(response);
     this.setState({ productsDetail: response });
   }
 
