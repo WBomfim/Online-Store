@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductsList from '../components/ProductsList';
 import Categorias from '../components/Categorias';
+import { addToCart, getCartItems } from '../services/userCart';
 
 class Home extends Component {
   constructor() {
@@ -11,7 +12,12 @@ class Home extends Component {
       noProducts: false,
       productsList: [],
       searchInput: '',
+      numberItemsInCart: 0,
     };
+  }
+
+  componentDidMount() {
+    this.numberItemsInCart();
   }
 
   handleSearch = async () => {
@@ -36,8 +42,19 @@ class Home extends Component {
     });
   }
 
+  addItemToCart = (product) => {
+    addToCart(product);
+    this.numberItemsInCart();
+  }
+
+  numberItemsInCart = () => {
+    this.setState({
+      numberItemsInCart: getCartItems().length,
+    });
+  }
+
   render() {
-    const { searchInput, productsList, noProducts } = this.state;
+    const { searchInput, productsList, noProducts, numberItemsInCart } = this.state;
     return (
       <div>
         <input
@@ -60,6 +77,13 @@ class Home extends Component {
           <Link to="/cart" data-testid="shopping-cart-button">
             Carrinho
           </Link>
+          <div>
+            <span
+              data-testid="shopping-cart-product-quantity"
+            >
+              { numberItemsInCart === 0 ? null : numberItemsInCart }
+            </span>
+          </div>
         </button>
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
@@ -67,7 +91,11 @@ class Home extends Component {
         {noProducts
           ? <p>Nenhum produto foi encontrado</p>
           : productsList.map((product) => (
-            <ProductsList productsList={ product } key={ product.id } />
+            <ProductsList
+              key={ product.id }
+              productsList={ product }
+              addToCart={ this.addItemToCart }
+            />
           )) }
         <div>
           <Categorias />

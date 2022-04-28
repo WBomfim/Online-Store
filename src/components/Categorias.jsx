@@ -51,7 +51,7 @@ class Categorias extends Component {
           >
             { categoria.name }
           </button>))}
-        {semProdutos ? false : produtos.map((produto) => (
+        {semProdutos ? null : produtos.map((produto) => (
           <ProductsList productsList={ produto } key={ produto.id } />
         ))}
       </div>

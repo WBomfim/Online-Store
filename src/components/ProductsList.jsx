@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 class ProductsList extends Component {
   render() {
-    const { productsList } = this.props;
+    const { productsList, addToCart } = this.props;
     return (
-      <div data-testid="product" key={ productsList.id }>
-        <h3>
+      <div data-testid="product">
+        <h2 data-testid="shopping-cart-product-name">
           { productsList.title }
-        </h3>
+        </h2>
         <img
           src={ productsList.thumbnail }
           alt={ productsList.title }
@@ -17,6 +17,13 @@ class ProductsList extends Component {
         <h3>
           { productsList.price }
         </h3>
+        <button
+          type="button"
+          onClick={ () => addToCart(productsList) }
+          data-testid="product-add-to-cart"
+        >
+          Adicionar ao Carrinho
+        </button>
         <Link to={ `/details/${productsList.id}` } data-testid="product-detail-link">
           Details
         </Link>
@@ -24,6 +31,7 @@ class ProductsList extends Component {
     );
   }
 }
+
 ProductsList.propTypes = {
   productsList: PropTypes.shape({
     id: PropTypes.string,
@@ -31,5 +39,11 @@ ProductsList.propTypes = {
     thumbnail: PropTypes.string,
     price: PropTypes.number,
   }).isRequired,
+  addToCart: PropTypes.func,
 };
+
+ProductsList.defaultProps = {
+  addToCart: () => {},
+};
+
 export default ProductsList;
