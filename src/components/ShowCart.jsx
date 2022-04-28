@@ -10,6 +10,10 @@ class ShowCart extends Component {
     };
   }
 
+  componentDidMount() {
+    this.numberItem();
+  }
+
   numberItem = () => {
     const { productsList } = this.props;
     const cartItems = getCartItems();
@@ -22,7 +26,6 @@ class ShowCart extends Component {
   render() {
     const { numberItem } = this.state;
     const { productsList } = this.props;
-    // console.log(productsList);
 
     return (
       <>
