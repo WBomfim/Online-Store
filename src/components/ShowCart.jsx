@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getCartItems, removeItemCart } from '../services/userCart';
+import { getCartItems, addToCart, removeItemCart } from '../services/userCart';
 
 class ShowCart extends Component {
   constructor(props) {
@@ -24,6 +24,8 @@ class ShowCart extends Component {
   }
 
   handleQuantityPlus = () => {
+    const { productsList } = this.props;
+    addToCart(productsList);
     this.setState((prevState) => ({
       numberItem: prevState.numberItem + 1,
     }));
@@ -31,11 +33,13 @@ class ShowCart extends Component {
 
   handleQuantityMinus = () => {
     const { numberItem } = this.state;
+    const { productsList } = this.props;
     if (numberItem < 2) {
       this.setState(() => ({
         numberItem: 1,
       }));
     } else {
+      removeItemCart(productsList);
       this.setState((prevState) => ({
         numberItem: prevState.numberItem - 1,
       }));
@@ -79,6 +83,10 @@ class ShowCart extends Component {
         >
           Remover Item
         </button>
+        <button type="button">
+          Finalizar a compra
+        </button>
+        <br />
       </>
     );
   }
