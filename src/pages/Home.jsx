@@ -54,6 +54,7 @@ class Home extends Component {
         productsList: products.results,
       });
     }
+  }
 
   addItemToCart = (product) => {
     addToCart(product);
@@ -64,7 +65,6 @@ class Home extends Component {
     this.setState({
       numberItemsInCart: getCartItems().length,
     });
-
   }
 
   render() {
