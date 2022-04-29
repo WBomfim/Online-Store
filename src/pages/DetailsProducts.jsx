@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { addToCart } from '../services/userCart';
+import UserComments from '../components/UserComments';
+import { addToCart, getCartItems } from '../services/userCart';
 
 class DetailsProducts extends React.Component {
   constructor() {
@@ -10,6 +11,7 @@ class DetailsProducts extends React.Component {
     this.state = {
       productsDetail: [],
       shippingDetail: [],
+      numberItemsInCart: 0,
     };
     this.renderProduct = this.renderProduct.bind(this);
     this.renderShipping = this.renderShipping.bind(this);
@@ -18,6 +20,13 @@ class DetailsProducts extends React.Component {
   componentDidMount() {
     this.renderProduct();
     this.renderShipping();
+    this.numberItemsInCart();
+  }
+
+  numberItemsInCart = () => {
+    this.setState({
+      numberItemsInCart: getCartItems().length,
+    });
   }
 
   async renderProduct() {
@@ -36,10 +45,16 @@ class DetailsProducts extends React.Component {
   }
 
   render() {
-    const { productsDetail, shippingDetail } = this.state;
-    // const haveFreeMethod = shipping.free_shipping;
+    const { productsDetail, shippingDetail, numberItemsInCart } = this.state;
+    const { match: { params: { id } } } = this.props;
+    
     return (
       <div>
+        <span
+          data-testid="shopping-cart-size"
+        >
+          { numberItemsInCart === 0 ? null : numberItemsInCart }
+        </span>
         <h1>Details aqui</h1>
         <Link to="/cart" data-testid="shopping-cart-button">Carrinho de compra</Link>
         <p data-testid="product-detail-name">{ productsDetail.title }</p>
@@ -58,6 +73,7 @@ class DetailsProducts extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+        <UserComments itemId={ id } />
       </div>
     );
   }
