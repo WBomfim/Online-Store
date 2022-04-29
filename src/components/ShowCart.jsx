@@ -16,6 +16,9 @@ class ShowCart extends Component {
     this.isEnableButton();
   }
 
+  componentDidUpdate() {
+  }
+
   numberItem = () => {
     const { productsList } = this.props;
     const cartItems = getCartItems();
@@ -28,11 +31,13 @@ class ShowCart extends Component {
   isEnableButton = () => {
     const { productsList } = this.props;
     const quantItem = getCartItems();
+    const quantItemFilter = quantItem.filter((item) => item.id === productsList.id);
     const quantity = productsList.available_quantity;
-    if (quantity > quantItem.length) {
-      return this.setState({ isEnable: false });
+    if (quantity > quantItemFilter.length) {
+      this.setState({ isEnable: false });
+    } else {
+      this.setState({ isEnable: true });
     }
-    return this.setState({ isEnable: true });
   }
 
   handleQuantityPlus = () => {
@@ -40,8 +45,9 @@ class ShowCart extends Component {
     addToCart(productsList);
     this.setState((prevState) => ({
       numberItem: prevState.numberItem + 1,
-    }));
-    this.isEnableButton();
+    }), () => {
+      this.isEnableButton();
+    });
   }
 
   handleQuantityMinus = () => {
@@ -57,7 +63,6 @@ class ShowCart extends Component {
         numberItem: prevState.numberItem - 1,
       }));
     }
-    this.isEnableButton();
   }
 
   render() {
