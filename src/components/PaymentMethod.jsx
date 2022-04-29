@@ -5,20 +5,21 @@ import './PaymentMethod.css';
 class PaymentMethod extends Component {
   render() {
     const { onChange, error } = this.props;
+
     return (
       <div className="paymentMethod">
         <h2>Método de Pagamento</h2>
+        <div className="error">
+          { error && <p>Selecione um método de pagamento</p> }
+        </div>
         <form>
           <div>
             <h3>Boleto</h3>
-            <div>
-              { error && <p>Selecione um método de pagamento</p> }
-            </div>
             <label htmlFor="boleto">
               <input
                 id="boleto"
                 type="radio"
-                name="payment"
+                name="paymentMethod"
                 value="boleto"
                 onChange={ (event) => onChange(event) }
               />
@@ -31,7 +32,7 @@ class PaymentMethod extends Component {
               <input
                 id="visa"
                 type="radio"
-                name="payment"
+                name="paymentMethod"
                 value="visa"
                 onChange={ (event) => onChange(event) }
               />
@@ -41,7 +42,7 @@ class PaymentMethod extends Component {
               <input
                 id="MasterCard"
                 type="radio"
-                name="payment"
+                name="paymentMethod"
                 value="masterCard"
                 onChange={ (event) => onChange(event) }
               />
@@ -51,7 +52,7 @@ class PaymentMethod extends Component {
               <input
                 id="elo"
                 type="radio"
-                name="payment"
+                name="paymentMethod"
                 value="elo"
                 onChange={ (event) => onChange(event) }
               />

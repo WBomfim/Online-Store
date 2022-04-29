@@ -14,32 +14,41 @@ const checkPurchaseForm = (object) => {
   } = object;
 
   const errors = {};
-
   if (!name) {
     errors.notName = true;
-  } else if (!email) {
+  }
+  if (!email) {
     errors.notEmail = true;
-  } else if (!CPF) {
+  }
+  if (!CPF) {
     errors.notCPF = true;
-  } else if (!telephone) {
+  }
+  if (!telephone) {
     errors.notTelephone = true;
-  } else if (!CEP) {
+  }
+  if (!CEP) {
     errors.notCEP = true;
-  } else if (!address) {
+  }
+  if (!address) {
     errors.notAddress = true;
-  } else if (!complent) {
+  }
+  if (!complent) {
     errors.notComplent = true;
-  } else if (!number) {
+  }
+  if (!number) {
     errors.notNumber = true;
-  } else if (!city) {
+  }
+  if (!city) {
     errors.notCity = true;
-  } else if (!state) {
+  }
+  if (!state) {
     errors.notState = true;
-  } else if (!paymentMethod) {
+  }
+  if (!paymentMethod) {
     errors.notPaymentMethod = true;
   }
 
   return errors;
 };
 
-export default { checkPurchaseForm };
+export default checkPurchaseForm;

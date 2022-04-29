@@ -1,12 +1,12 @@
 .showRevProducts {
   border: solid black 1px;
-  width: 70%;
   margin: 10px auto;
+  width: 70%;
 }
 
 .showRevProducts .title {
-    text-align: start;
-    margin-left: 50px;
+  margin-left: 50px;
+  text-align: start;
 }
 
 .Checkout .showProducts {
@@ -15,7 +15,7 @@
 }
 
 .showRevProducts .price-cart {
-  text-align: start;
-  margin-left: 50px;
   font-size: 20px;
+  margin-left: 50px;
+  text-align: start;
 }

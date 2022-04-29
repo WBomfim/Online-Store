@@ -67,7 +67,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="complent"
-            style={ errors.notCompent ? { backgroundColor: 'red' } : {} }
+            style={ errors.notComplent ? { backgroundColor: 'red' } : {} }
             placeholder="Complemento"
             onChange={ (event) => onChange(event) }
             value={ state.complent }
@@ -150,7 +150,7 @@ PurchaseForm.propTypes = {
     notTelephone: PropTypes.bool,
     notCEP: PropTypes.bool,
     notAddress: PropTypes.bool,
-    notCompent: PropTypes.bool,
+    notComplent: PropTypes.bool,
     notNumber: PropTypes.bool,
     notCity: PropTypes.bool,
     notState: PropTypes.bool,

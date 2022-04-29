@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { getCartItems } from '../services/userCart';
+import PropTypes from 'prop-types';
+import { getCartItems, clearCart } from '../services/userCart';
 import ShowProductsCheckout from '../components/ShowProductsCheckout';
 import PurchaseForm from '../components/PurchaseForm';
 import PaymentMethod from '../components/PaymentMethod';
+import checkPurchaseForm from '../helpers/checkForms';
 import './Checkout.css';
 
 class Checkout extends Component {
@@ -37,6 +39,7 @@ class Checkout extends Component {
     this.setState({
       [name]: value,
     });
+    this.clearErros();
   }
 
   getListCart = () => {
@@ -67,6 +70,26 @@ class Checkout extends Component {
     }, 0);
     this.setState({
       priceTotal,
+    });
+  }
+
+  checkForm = () => {
+    const { state } = this;
+    const { history } = this.props;
+    const errors = checkPurchaseForm(state);
+    if (Object.keys(errors).length === 0) {
+      clearCart();
+      history.push('/');
+    } else {
+      this.setState({
+        errors,
+      });
+    }
+  }
+
+  clearErros = () => {
+    this.setState({
+      errors: {},
     });
   }
 
@@ -139,11 +162,12 @@ class Checkout extends Component {
               />
               <PaymentMethod
                 paymentMethod={ paymentMethod }
-                error={ errors.PaymentMethod }
+                error={ errors.notPaymentMethod }
                 onChange={ this.handleChange }
               />
               <button
                 type="button"
+                onClick={ () => this.checkForm() }
               >
                 Finalizar Compra
               </button>
@@ -152,5 +176,11 @@ class Checkout extends Component {
     );
   }
 }
+
+Checkout.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Checkout;
