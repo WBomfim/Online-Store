@@ -83,9 +83,6 @@ class ShowCart extends Component {
         >
           Remover Item
         </button>
-        <button type="button">
-          Finalizar a compra
-        </button>
         <br />
       </>
     );

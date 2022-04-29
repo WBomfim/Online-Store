@@ -1,0 +1,30 @@
+.product-checkout {
+  align-items: center;
+  display: flex;
+  border: solid black 1px;
+  max-width: 650px;
+  gap: 10px;
+  margin: 5px 40px;
+}
+
+.product-checkout img {
+  width: 100px;
+  height: 100px;
+}
+
+.product-checkout h2 {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.product-checkout div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+}
+
+.product-checkout .price {
+  flex-direction: row;
+  justify-content: space-around;
+}

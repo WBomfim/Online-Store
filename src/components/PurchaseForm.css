@@ -1,0 +1,13 @@
+.PurchaseForm {
+  border: solid black 1px;
+  width: 70%;
+  margin: 10px auto;
+}
+
+.PurchaseForm form input {
+  margin: 5px;
+}
+
+.PurchaseForm form select {
+  margin: 5px 0px 10px; 
+}

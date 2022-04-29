@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import './App.css';
 import UserCart from './pages/UserCart';
 import DetailsProducts from './pages/DetailsProducts';
+import Checkout from './pages/Checkout';
+import './App.css';
 
 class App extends Component {
   render() {
@@ -17,6 +18,11 @@ class App extends Component {
               exact
               path="/details/:id"
               render={ (props) => <DetailsProducts { ...props } /> }
+            />
+            <Route
+              exact
+              path="/checkout"
+              render={ (props) => <Checkout { ...props } /> }
             />
           </Switch>
         </BrowserRouter>
