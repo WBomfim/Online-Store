@@ -52,7 +52,7 @@ class DetailsProducts extends React.Component {
   render() {
     const { productsDetail, shippingDetail, numberItemsInCart, theAmount } = this.state;
     const { match: { params: { id } } } = this.props;
-    
+
     return (
       <div>
         <span
