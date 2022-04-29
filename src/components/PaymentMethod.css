@@ -1,0 +1,30 @@
+.paymentMethod {
+  border: solid black 1px;
+  margin: 10px auto;
+  width: 70%;
+}
+
+.paymentMethod form {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+
+.paymentMethod form div {
+  margin-bottom: 15px;
+  text-align: left;
+  width: 30%;
+}
+
+.paymentMethod form div label {
+  margin: 10px;
+}
+
+.paymentMethod form div input {
+  width: 5%;
+}
+
+.paymentMethod .error {
+  color: red;
+  font-weight: 900;
+}

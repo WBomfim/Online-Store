@@ -11,6 +11,7 @@ class DetailsProducts extends React.Component {
     this.state = {
       productsDetail: [],
       shippingDetail: [],
+      theAmount: 0,
       numberItemsInCart: 0,
     };
     this.renderProduct = this.renderProduct.bind(this);
@@ -34,7 +35,11 @@ class DetailsProducts extends React.Component {
 
     const produtos = await fetch(`https://api.mercadolibre.com/items/${id}`);
     const response = await produtos.json();
-    this.setState({ productsDetail: response });
+    const quant = response.available_quantity;
+    this.setState({
+      productsDetail: response,
+      theAmount: quant,
+    });
   }
 
   async renderShipping() {
@@ -45,7 +50,7 @@ class DetailsProducts extends React.Component {
   }
 
   render() {
-    const { productsDetail, shippingDetail, numberItemsInCart } = this.state;
+    const { productsDetail, shippingDetail, numberItemsInCart, theAmount } = this.state;
     const { match: { params: { id } } } = this.props;
     
     return (
@@ -66,6 +71,7 @@ class DetailsProducts extends React.Component {
         </p>
         <img src={ productsDetail.thumbnail } alt={ productsDetail.title } />
         <p>{productsDetail.price}</p>
+        <p>{`Em estoque: ${theAmount} unidades`}</p>
         <button
           type="button"
           data-testid="product-detail-add-to-cart"
