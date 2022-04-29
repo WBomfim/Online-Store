@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getCartItems } from '../services/userCart';
 import ShowCart from '../components/ShowCart';
 
@@ -44,6 +45,8 @@ class UserCart extends Component {
 
     return (
       <div>
+        <Link to="/">Voltar à home</Link>
+        <br />
         { noProducts
           ? (
             <h3
