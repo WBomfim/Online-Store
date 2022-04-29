@@ -5,10 +5,16 @@ import { Link } from 'react-router-dom';
 class ProductsList extends Component {
   render() {
     const { productsList, addToCart } = this.props;
+    const { shipping } = productsList;
     return (
       <div data-testid="product">
         <h2 data-testid="shopping-cart-product-name">
           { productsList.title }
+        </h2>
+        <h2>
+
+          {shipping.free_shipping && <p data-testid="free-shipping">Frete Grátis</p>}
+
         </h2>
         <img
           src={ productsList.thumbnail }
@@ -38,6 +44,9 @@ ProductsList.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }).isRequired,
   }).isRequired,
   addToCart: PropTypes.func,
 };
