@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getCartItems } from '../services/userCart';
 import ShowCart from '../components/ShowCart';
@@ -40,6 +41,11 @@ class UserCart extends Component {
     }
   }
 
+  directionCheckout = () => {
+    const { history } = this.props;
+    history.push('/checkout');
+  }
+
   render() {
     const { productsCart, noProducts } = this.state;
 
@@ -55,15 +61,33 @@ class UserCart extends Component {
               Seu carrinho está vazio
             </h3>
           )
-          : productsCart.map((product, index) => (
-            <ShowCart
-              key={ index }
-              productsList={ product }
-            />
-          ))}
+          : (
+            <>
+              <div>
+                <button
+                  type="button"
+                  onClick={ () => this.directionCheckout() }
+                  data-testid="checkout-products"
+                >
+                  Finalizar a compra
+                </button>
+              </div>
+              { productsCart.map((product, index) => (
+                <ShowCart
+                  key={ index }
+                  productsList={ product }
+                />
+              ))}
+            </>)}
       </div>
     );
   }
 }
+
+UserCart.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default UserCart;

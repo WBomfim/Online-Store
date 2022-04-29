@@ -1,0 +1,21 @@
+.showRevProducts {
+  border: solid black 1px;
+  margin: 10px auto;
+  width: 70%;
+}
+
+.showRevProducts .title {
+  margin-left: 50px;
+  text-align: start;
+}
+
+.Checkout .showProducts {
+  display: flex;
+  flex-direction: column;
+}
+
+.showRevProducts .price-cart {
+  font-size: 20px;
+  margin-left: 50px;
+  text-align: start;
+}
