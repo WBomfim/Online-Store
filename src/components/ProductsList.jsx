@@ -44,6 +44,9 @@ ProductsList.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }).isRequired,
   }).isRequired,
   addToCart: PropTypes.func,
 };
