@@ -7,11 +7,13 @@ class ShowCart extends Component {
     super(props);
     this.state = {
       numberItem: 0,
+      isEnable: true,
     };
   }
 
   componentDidMount() {
     this.numberItem();
+    this.isEnableButton();
   }
 
   numberItem = () => {
@@ -23,12 +25,23 @@ class ShowCart extends Component {
     });
   }
 
+  isEnableButton = () => {
+    const { productsList } = this.props;
+    const quantItem = getCartItems();
+    const quantity = productsList.available_quantity;
+    if (quantity > quantItem.length) {
+      return this.setState({ isEnable: false });
+    }
+    return this.setState({ isEnable: true });
+  }
+
   handleQuantityPlus = () => {
     const { productsList } = this.props;
     addToCart(productsList);
     this.setState((prevState) => ({
       numberItem: prevState.numberItem + 1,
     }));
+    this.isEnableButton();
   }
 
   handleQuantityMinus = () => {
@@ -44,10 +57,11 @@ class ShowCart extends Component {
         numberItem: prevState.numberItem - 1,
       }));
     }
+    this.isEnableButton();
   }
 
   render() {
-    const { numberItem } = this.state;
+    const { numberItem, isEnable } = this.state;
     const { productsList } = this.props;
 
     return (
@@ -64,6 +78,7 @@ class ShowCart extends Component {
           type="button"
           data-testid="product-increase-quantity"
           onClick={ this.handleQuantityPlus }
+          disabled={ isEnable }
         >
           +
         </button>
@@ -98,6 +113,7 @@ ShowCart.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    available_quantity: PropTypes.number,
   }).isRequired,
 };
 
