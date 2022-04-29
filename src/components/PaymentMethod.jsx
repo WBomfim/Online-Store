@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './PaymentMethod.css';
 
 class PaymentMethod extends Component {
   render() {
+    const { onChange } = this.props;
     return (
       <div className="paymentMethod">
         <h2>Método de Pagamento</h2>
@@ -15,6 +17,7 @@ class PaymentMethod extends Component {
                 type="radio"
                 name="payment"
                 value="boleto"
+                onChange={ (event) => onChange(event) }
               />
               Boleto
             </label>
@@ -27,6 +30,7 @@ class PaymentMethod extends Component {
                 type="radio"
                 name="payment"
                 value="visa"
+                onChange={ (event) => onChange(event) }
               />
               Visa
             </label>
@@ -36,6 +40,7 @@ class PaymentMethod extends Component {
                 type="radio"
                 name="payment"
                 value="masterCard"
+                onChange={ (event) => onChange(event) }
               />
               Master Card
             </label>
@@ -45,6 +50,7 @@ class PaymentMethod extends Component {
                 type="radio"
                 name="payment"
                 value="elo"
+                onChange={ (event) => onChange(event) }
               />
               Elo
             </label>
@@ -54,5 +60,9 @@ class PaymentMethod extends Component {
     );
   }
 }
+
+PaymentMethod.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
 
 export default PaymentMethod;

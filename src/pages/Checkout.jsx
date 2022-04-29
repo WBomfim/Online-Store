@@ -12,12 +12,30 @@ class Checkout extends Component {
       productsCart: [],
       noProducts: false,
       priceTotal: 0,
+      name: '',
+      email: '',
+      CPF: '',
+      telephone: '',
+      CEP: '',
+      address: '',
+      complent: '',
+      number: '',
+      city: '',
+      estado: '',
+      paymentMethod: '',
     };
   }
 
   componentDidMount() {
     this.getListCart();
     this.sumPrice();
+  }
+
+  handleChange = ({ target }) => {
+    const { value, name } = target;
+    this.setState({
+      [name]: value,
+    });
   }
 
   getListCart = () => {
@@ -52,7 +70,36 @@ class Checkout extends Component {
   }
 
   render() {
-    const { productsCart, noProducts, priceTotal } = this.state;
+    const {
+      productsCart,
+      noProducts,
+      priceTotal,
+      name,
+      email,
+      CPF,
+      telephone,
+      CEP,
+      address,
+      complent,
+      number,
+      city,
+      estado,
+      paymentMethod,
+    } = this.state;
+
+    const state = {
+      name,
+      email,
+      CPF,
+      telephone,
+      CEP,
+      address,
+      complent,
+      number,
+      city,
+      estado,
+    };
+
     return (
       <div className="Checkout">
         { noProducts
@@ -83,8 +130,14 @@ class Checkout extends Component {
                   </p>
                 </div>
               </div>
-              <PurchaseForm />
-              <PaymentMethod />
+              <PurchaseForm
+                state={ state }
+                onChange={ this.handleChange }
+              />
+              <PaymentMethod
+                paymentMethod={ paymentMethod }
+                onChange={ this.handleChange }
+              />
               <button
                 type="button"
               >
