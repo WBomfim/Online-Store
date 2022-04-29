@@ -93,7 +93,7 @@ class Home extends Component {
           </Link>
           <div>
             <span
-              data-testid="shopping-cart-product-quantity"
+              data-testid="shopping-cart-size"
             >
               { numberItemsInCart === 0 ? null : numberItemsInCart }
             </span>
