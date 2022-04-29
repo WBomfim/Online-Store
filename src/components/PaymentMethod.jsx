@@ -4,13 +4,16 @@ import './PaymentMethod.css';
 
 class PaymentMethod extends Component {
   render() {
-    const { onChange } = this.props;
+    const { onChange, error } = this.props;
     return (
       <div className="paymentMethod">
         <h2>Método de Pagamento</h2>
         <form>
           <div>
             <h3>Boleto</h3>
+            <div>
+              { error && <p>Selecione um método de pagamento</p> }
+            </div>
             <label htmlFor="boleto">
               <input
                 id="boleto"
@@ -63,6 +66,11 @@ class PaymentMethod extends Component {
 
 PaymentMethod.propTypes = {
   onChange: PropTypes.func.isRequired,
+  error: PropTypes.bool,
+};
+
+PaymentMethod.defaultProps = {
+  error: false,
 };
 
 export default PaymentMethod;

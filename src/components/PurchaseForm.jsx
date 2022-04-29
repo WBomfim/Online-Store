@@ -4,7 +4,7 @@ import './PurchaseForm.css';
 
 class PurchaseForm extends Component {
   render() {
-    const { state, onChange } = this.props;
+    const { state, onChange, errors } = this.props;
 
     return (
       <div className="PurchaseForm">
@@ -13,7 +13,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="name"
-            style={ { backgroundColor: '' } }
+            style={ errors.notName ? { backgroundColor: 'red' } : {} }
             placeholder="Nome Completo"
             value={ state.name }
             onChange={ (event) => onChange(event) }
@@ -22,6 +22,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="email"
+            style={ errors.notEmail ? { backgroundColor: 'red' } : {} }
             placeholder="Email"
             value={ state.email }
             onChange={ (event) => onChange(event) }
@@ -30,6 +31,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="CPF"
+            style={ errors.notCPF ? { backgroundColor: 'red' } : {} }
             placeholder="CPF"
             value={ state.CPF }
             onChange={ (event) => onChange(event) }
@@ -38,6 +40,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="telephone"
+            style={ errors.notTelephone ? { backgroundColor: 'red' } : {} }
             placeholder="Telefone"
             value={ state.telephone }
             onChange={ (event) => onChange(event) }
@@ -46,6 +49,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="CEP"
+            style={ errors.notCEP ? { backgroundColor: 'red' } : {} }
             placeholder="CEP"
             value={ state.CEP }
             onChange={ (event) => onChange(event) }
@@ -54,6 +58,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="address"
+            style={ errors.notAddress ? { backgroundColor: 'red' } : {} }
             placeholder="Endereço"
             value={ state.address }
             onChange={ (event) => onChange(event) }
@@ -62,6 +67,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="complent"
+            style={ errors.notCompent ? { backgroundColor: 'red' } : {} }
             placeholder="Complemento"
             onChange={ (event) => onChange(event) }
             value={ state.complent }
@@ -69,6 +75,7 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="number"
+            style={ errors.notNumber ? { backgroundColor: 'red' } : {} }
             placeholder="Número"
             value={ state.number }
             onChange={ (event) => onChange(event) }
@@ -76,13 +83,15 @@ class PurchaseForm extends Component {
           <input
             type="text"
             name="city"
+            style={ errors.notCity ? { backgroundColor: 'red' } : {} }
             placeholder="Cidade"
             value={ state.city }
             onChange={ (event) => onChange(event) }
           />
           <select
-            name="estado"
-            value={ state.estado }
+            name="state"
+            style={ errors.notState ? { backgroundColor: 'red' } : {} }
+            value={ state.state }
             onChange={ (event) => onChange(event) }
           >
             <option value="">Estado</option>
@@ -131,9 +140,21 @@ PurchaseForm.propTypes = {
     complent: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
-    estado: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired,
   }).isRequired,
   onChange: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    notName: PropTypes.bool,
+    notEmail: PropTypes.bool,
+    notCPF: PropTypes.bool,
+    notTelephone: PropTypes.bool,
+    notCEP: PropTypes.bool,
+    notAddress: PropTypes.bool,
+    notCompent: PropTypes.bool,
+    notNumber: PropTypes.bool,
+    notCity: PropTypes.bool,
+    notState: PropTypes.bool,
+  }).isRequired,
 };
 
 export default PurchaseForm;

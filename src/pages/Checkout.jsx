@@ -21,8 +21,9 @@ class Checkout extends Component {
       complent: '',
       number: '',
       city: '',
-      estado: '',
+      state: '',
       paymentMethod: '',
+      errors: {},
     };
   }
 
@@ -83,11 +84,12 @@ class Checkout extends Component {
       complent,
       number,
       city,
-      estado,
+      state,
       paymentMethod,
+      errors,
     } = this.state;
 
-    const state = {
+    const states = {
       name,
       email,
       CPF,
@@ -97,7 +99,7 @@ class Checkout extends Component {
       complent,
       number,
       city,
-      estado,
+      state,
     };
 
     return (
@@ -131,11 +133,13 @@ class Checkout extends Component {
                 </div>
               </div>
               <PurchaseForm
-                state={ state }
+                state={ states }
+                errors={ errors }
                 onChange={ this.handleChange }
               />
               <PaymentMethod
                 paymentMethod={ paymentMethod }
+                error={ errors.PaymentMethod }
                 onChange={ this.handleChange }
               />
               <button
