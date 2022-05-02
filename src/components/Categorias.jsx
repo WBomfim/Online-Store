@@ -26,7 +26,6 @@ class Categorias extends Component {
 
     return (
       <div className={ styles.category }>
-        <h2>Categorias</h2>
         {categorias.map((categoria) => (
           <button
             className={ styles.categoryBtn }

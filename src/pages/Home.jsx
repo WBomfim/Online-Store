@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { FaSearch, FaShoppingCart, FaBars } from 'react-icons/fa';
+import { FaSearch, FaShoppingCart, FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductsList from '../components/ProductsList';
 import Categorias from '../components/Categorias';
@@ -151,13 +151,22 @@ class Home extends Component {
               />
             )) }
         </div>
-
         <div>
           <span className={ styles.menu }>
-            <FaBars
-              onClick={ this.ShowBar }
-              style={ { fontSize: '30px', color: 'black' } }
-            />
+            <h2>Categorias</h2>
+            <div className={ styles.icon }>
+              <div>
+                { showBar ? <FaAngleUp
+                  onClick={ this.ShowBar }
+                  style={ { fontSize: '30px', color: 'black' } }
+                /> : <FaAngleDown
+                  onClick={ this.ShowBar }
+                  style={ { fontSize: '30px', color: 'black' } }
+                />}
+
+              </div>
+            </div>
+
           </span>
           <div className={ showBar ? styles.categoryMenuOn : styles.categoryMenuOff }>
             <Categorias handleCategory={ this.handleCategory } />
