@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
-import './Categorias.css';
+import styles from '../styles/Category.module.css';
 
 class Categorias extends Component {
   constructor(props) {
@@ -25,10 +25,11 @@ class Categorias extends Component {
     const { handleCategory } = this.props;
 
     return (
-      <div className="Categorias">
+      <div className={ styles.category }>
         <h2>Categorias</h2>
         {categorias.map((categoria) => (
           <button
+            className={ styles.categoryBtn }
             type="button"
             key={ categoria.id }
             onClick={ () => handleCategory(categoria.id) }

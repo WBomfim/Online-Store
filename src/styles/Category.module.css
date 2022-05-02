@@ -1,0 +1,18 @@
+.category {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 9px;
+}
+
+
+.categoryBtn {
+  border: none;
+  background-color: #fff;
+}
+
+.categoryBtn:hover {
+  padding: 3px 3px 3px 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
