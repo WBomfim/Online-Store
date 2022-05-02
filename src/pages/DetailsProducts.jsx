@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserComments from '../components/UserComments';
 import { addToCart, getCartItems } from '../services/userCart';
+import './DetailsProducts.css';
 
 class DetailsProducts extends React.Component {
   constructor() {
@@ -54,14 +55,15 @@ class DetailsProducts extends React.Component {
     const { match: { params: { id } } } = this.props;
 
     return (
-      <div>
-        <span
-          data-testid="shopping-cart-size"
-        >
-          { numberItemsInCart === 0 ? null : numberItemsInCart }
-        </span>
-        <h1>Details aqui</h1>
-        <Link to="/cart" data-testid="shopping-cart-button">Carrinho de compra</Link>
+      <div className="detail-container">
+        <header>
+          <span
+            data-testid="shopping-cart-size"
+          >
+            { numberItemsInCart === 0 ? null : numberItemsInCart }
+          </span>
+          <Link to="/cart" data-testid="shopping-cart-button">Carrinho de compra</Link>
+        </header>
         <p data-testid="product-detail-name">{ productsDetail.title }</p>
         <p>
 
@@ -69,16 +71,22 @@ class DetailsProducts extends React.Component {
           && <p data-testid="free-shipping">Frete Grátis</p>}
 
         </p>
-        <img src={ productsDetail.thumbnail } alt={ productsDetail.title } />
+        <div className="img-frame">
+          <img src={ productsDetail.thumbnail } alt={ productsDetail.title } />
+        </div>
         <p>{productsDetail.price}</p>
         <p>{`Em estoque: ${theAmount} unidades`}</p>
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ () => addToCart(productsDetail) }
-        >
-          Adicionar ao carrinho
-        </button>
+        <div className="button-frame">
+          <button
+            type="button"
+            className="button-details"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => addToCart(productsDetail) }
+          >
+            Adicionar ao carrinho
+          </button>
+        </div>
+
         <UserComments itemId={ id } />
       </div>
     );
