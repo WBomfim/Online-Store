@@ -17,9 +17,11 @@
   border-radius: 35px;
   width: 90px;
 }
-.comment-card{
+
+.comment-card {
   border: 2px solid black;
 }
+
 div {
   display: flex;
   flex-flow: column;
