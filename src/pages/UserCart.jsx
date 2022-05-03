@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { getCartItems } from '../services/userCart';
 import ShowCart from '../components/ShowCart';
+import style from './UserCart.module.css';
 
 class UserCart extends Component {
   constructor() {
@@ -10,12 +12,15 @@ class UserCart extends Component {
     this.state = {
       productsCart: [],
       noProducts: false,
+      totalPrice: 0,
     };
   }
 
   componentDidMount() {
     this.getListCart();
+    this.priceTotal();
   }
+
   /*
   Usamos a seguinte função em getListCart para que retornasse somente 1 array de objetos, se houvessem outros iguais, não criando duplicatas na página de UserCart
   link para referencia: https://medium.com/trainingcenter/removendo-objetos-duplicados-de-dentro-de-um-array-usando-set-ef4ea1319f4b
@@ -46,13 +51,28 @@ class UserCart extends Component {
     history.push('/checkout');
   }
 
+  priceTotal = () => {
+    const cartItems = getCartItems();
+    const priceTotal = cartItems.reduce((total, item) => {
+      total += item.price;
+      return total;
+    }, 0);
+    this.setState({
+      totalPrice: priceTotal,
+    });
+  }
+
   render() {
-    const { productsCart, noProducts } = this.state;
+    const { productsCart, noProducts, totalPrice } = this.state;
 
     return (
-      <div>
+      <div className={ style.container }>
         <Link to="/">Voltar à home</Link>
         <br />
+        <div className={ style.containerCar }>
+          <AiOutlineShoppingCart style={ { fontSize: '80px', color: 'black' } } />
+          <p>Carrinho de compras</p>
+        </div>
         { noProducts
           ? (
             <h3
@@ -63,8 +83,9 @@ class UserCart extends Component {
           )
           : (
             <>
-              <div>
+              <div className={ style.btnFinalizarCompra }>
                 <button
+                  className={ style.buttonFinCompra }
                   type="button"
                   onClick={ () => this.directionCheckout() }
                   data-testid="checkout-products"
@@ -72,6 +93,9 @@ class UserCart extends Component {
                   Finalizar a compra
                 </button>
               </div>
+              <p className={ style.containerTotalPrice }>
+                {`Valor total da Compra: R$ ${totalPrice}`}
+              </p>
               { productsCart.map((product, index) => (
                 <ShowCart
                   key={ index }
