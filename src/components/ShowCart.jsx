@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getCartItems, addToCart, removeItemCart } from '../services/userCart';
+import style from './ShowCart.module.css';
 
 class ShowCart extends Component {
   constructor(props) {
@@ -70,8 +71,9 @@ class ShowCart extends Component {
     const { productsList } = this.props;
 
     return (
-      <>
+      <div className={ style.container }>
         <button
+          className={ style.buttonLeft }
           type="button"
           data-testid="product-decrease-quantity"
           onClick={ this.handleQuantityMinus }
@@ -80,6 +82,7 @@ class ShowCart extends Component {
         </button>
         <span data-testid="shopping-cart-product-quantity">{ numberItem }</span>
         <button
+          className={ style.buttonRight }
           type="button"
           data-testid="product-increase-quantity"
           onClick={ this.handleQuantityPlus }
@@ -95,16 +98,17 @@ class ShowCart extends Component {
           alt={ productsList.title }
         />
         <h3>
-          { productsList.price }
+          {`R$${productsList.price}`}
         </h3>
         <button
+          className={ style.buttonRemove }
           type="button"
           onClick={ () => removeItemCart(productsList) }
         >
           Remover Item
         </button>
         <br />
-      </>
+      </div>
     );
   }
 }
