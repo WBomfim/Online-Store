@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { FaSearch, FaShoppingCart, FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import ProductsList from '../components/ProductsList';
 import Categorias from '../components/Categorias';
 import { addToCart, getCartItems } from '../services/userCart';
+import styles from '../styles/Home.module.css';
 
 class Home extends Component {
   constructor() {
@@ -13,6 +15,7 @@ class Home extends Component {
       productsList: [],
       searchInput: '',
       numberItemsInCart: 0,
+      showBar: false,
     };
   }
 
@@ -32,6 +35,23 @@ class Home extends Component {
         noProducts: false,
         productsList: products.results,
       });
+    }
+  }
+
+  handleKey = async (e) => {
+    if (e.key === 'Enter') {
+      const { searchInput } = this.state;
+      const products = await getProductsFromCategoryAndQuery('', searchInput);
+      if (!products) {
+        this.setState({
+          noProducts: true,
+        });
+      } else {
+        this.setState({
+          noProducts: false,
+          productsList: products.results,
+        });
+      }
     }
   }
 
@@ -67,29 +87,47 @@ class Home extends Component {
     });
   }
 
+  ShowBar = () => {
+    const { showBar } = this.state;
+    this.setState({
+      showBar: !showBar,
+    });
+  }
+
   render() {
-    const { searchInput, productsList, noProducts, numberItemsInCart } = this.state;
+    const {
+      searchInput,
+      productsList,
+      noProducts,
+      numberItemsInCart,
+      showBar } = this.state;
     return (
-      <div>
-        <input
-          data-testid="query-input"
-          type="text"
-          name="searchInput"
-          value={ searchInput }
-          onChange={ this.handleChange }
-        />
+      <div className={ styles.container }>
+        <span className={ styles.inputContainer }>
+          <input
+            data-testid="query-input"
+            className={ styles.searchInput }
+            type="text"
+            name="searchInput"
+            value={ searchInput }
+            onKeyPress={ this.handleKey }
+            onChange={ this.handleChange }
+          />
+          <button
+            className={ styles.searchBtn }
+            type="button"
+            data-testid="query-button"
+            onClick={ this.handleSearch }
+          >
+            <FaSearch style={ { fontSize: '20px' } } />
+          </button>
+        </span>
         <button
-          type="button"
-          data-testid="query-button"
-          onClick={ this.handleSearch }
-        >
-          Pesquisar Produto
-        </button>
-        <button
+          className={ styles.shoppingCartBtn }
           type="button"
         >
           <Link to="/cart" data-testid="shopping-cart-button">
-            Carrinho
+            <FaShoppingCart style={ { fontSize: '20px', color: 'black' } } />
           </Link>
           <div>
             <span
@@ -99,20 +137,40 @@ class Home extends Component {
             </span>
           </div>
         </button>
-        <h1 data-testid="home-initial-message">
+        <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
-        {noProducts
-          ? <p>Nenhum produto foi encontrado</p>
-          : productsList.map((product, index) => (
-            <ProductsList
-              key={ index }
-              productsList={ product }
-              addToCart={ this.addItemToCart }
-            />
-          )) }
+        </h3>
+        <div className={ styles.productsList }>
+          {noProducts
+            ? <p>Nenhum produto foi encontrado</p>
+            : productsList.map((product, index) => (
+              <ProductsList
+                key={ index }
+                productsList={ product }
+                addToCart={ this.addItemToCart }
+              />
+            )) }
+        </div>
         <div>
-          <Categorias handleCategory={ this.handleCategory } />
+          <span className={ styles.menu }>
+            <h2>Categorias</h2>
+            <div className={ styles.icon }>
+              <div>
+                { showBar ? <FaAngleUp
+                  onClick={ this.ShowBar }
+                  style={ { fontSize: '30px', color: 'black' } }
+                /> : <FaAngleDown
+                  onClick={ this.ShowBar }
+                  style={ { fontSize: '30px', color: 'black' } }
+                />}
+
+              </div>
+            </div>
+
+          </span>
+          <div className={ showBar ? styles.categoryMenuOn : styles.categoryMenuOff }>
+            <Categorias handleCategory={ this.handleCategory } />
+          </div>
         </div>
       </div>
     );

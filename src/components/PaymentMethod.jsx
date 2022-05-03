@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaBarcode, FaCcVisa, FaCcMastercard } from 'react-icons/fa';
+import EloIcon from '../imagens/elo_icon.png';
 import './PaymentMethod.css';
 
 class PaymentMethod extends Component {
@@ -14,7 +16,7 @@ class PaymentMethod extends Component {
         </div>
         <form>
           <div>
-            <h3>Boleto</h3>
+            <h3>Boleto Bancário</h3>
             <label htmlFor="boleto">
               <input
                 id="boleto"
@@ -23,7 +25,7 @@ class PaymentMethod extends Component {
                 value="boleto"
                 onChange={ (event) => onChange(event) }
               />
-              Boleto
+              <FaBarcode size={ 50 } />
             </label>
           </div>
           <div>
@@ -36,17 +38,17 @@ class PaymentMethod extends Component {
                 value="visa"
                 onChange={ (event) => onChange(event) }
               />
-              Visa
+              <FaCcVisa size={ 70 } />
             </label>
             <label htmlFor="masterCard">
               <input
-                id="MasterCard"
+                id="masterCard"
                 type="radio"
                 name="paymentMethod"
                 value="masterCard"
                 onChange={ (event) => onChange(event) }
               />
-              Master Card
+              <FaCcMastercard size={ 70 } />
             </label>
             <label htmlFor="elo">
               <input
@@ -56,7 +58,7 @@ class PaymentMethod extends Component {
                 value="elo"
                 onChange={ (event) => onChange(event) }
               />
-              Elo
+              <img src={ EloIcon } alt="test" />
             </label>
           </div>
         </form>

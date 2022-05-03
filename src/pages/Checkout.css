@@ -1,11 +1,14 @@
 .showRevProducts {
-  border: solid black 1px;
-  margin: 10px auto;
+  background-color: whitesmoke;
+  border: solid rgb(185, 185, 185) 1px;
+  border-radius: 18px;
+  box-shadow: 15px 10px 10px grey;
+  margin: 30px auto 10px;
   width: 70%;
 }
 
 .showRevProducts .title {
-  margin-left: 50px;
+  margin-left: 60px;
   text-align: start;
 }
 
@@ -16,6 +19,36 @@
 
 .showRevProducts .price-cart {
   font-size: 20px;
-  margin-left: 50px;
+  margin-left: 60px;
   text-align: start;
+}
+
+.checkout-button {
+  background-color: rgba(0, 0, 255, 0.842);
+  border-radius: 12px;
+  box-shadow: 15px 10px 10px grey;
+  color: white;
+  font-size: 22px;
+  height: 50px;
+  margin-bottom: 50px;
+  width: 70%;
+}
+
+@media screen and ( max-width : 770px ) {
+
+  .showRevProducts {
+    box-shadow: none;
+    margin: 10px auto;
+    width: 95%;
+  }
+
+  .showRevProducts .title {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .showRevProducts .price-cart {
+    margin: 0;
+    text-align: center;
+  }
 }

@@ -151,7 +151,7 @@ class Checkout extends Component {
                 </div>
                 <div className="price-cart">
                   <p>
-                    <strong>{ `Total: ${priceTotal}`}</strong>
+                    <strong>{ `Total: ${priceTotal.toFixed(2)}`}</strong>
                   </p>
                 </div>
               </div>
@@ -166,6 +166,7 @@ class Checkout extends Component {
                 onChange={ this.handleChange }
               />
               <button
+                className="checkout-button"
                 type="button"
                 onClick={ () => this.checkForm() }
               >
