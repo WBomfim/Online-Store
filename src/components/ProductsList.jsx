@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styles from '../styles/ProductsList.module.css';
 
 class ProductsList extends Component {
   render() {
     const { productsList, addToCart } = this.props;
     const { shipping } = productsList;
     return (
-      <div data-testid="product">
-        <h2 data-testid="shopping-cart-product-name">
+      <div data-testid="product" className={ styles.container }>
+        <h3 data-testid="shopping-cart-product-name">
           { productsList.title }
-        </h2>
+        </h3>
         <h2>
 
           {shipping.free_shipping && <p data-testid="free-shipping">Frete Grátis</p>}
@@ -21,18 +22,27 @@ class ProductsList extends Component {
           alt={ productsList.title }
         />
         <h3>
+          Preço:
+          {' '}
           { productsList.price }
         </h3>
-        <button
-          type="button"
-          onClick={ () => addToCart(productsList) }
-          data-testid="product-add-to-cart"
-        >
-          Adicionar ao Carrinho
-        </button>
-        <Link to={ `/details/${productsList.id}` } data-testid="product-detail-link">
-          Details
-        </Link>
+        <div className={ styles.userChoise }>
+          <button
+            className={ styles.addToCart }
+            type="button"
+            onClick={ () => addToCart(productsList) }
+            data-testid="product-add-to-cart"
+          >
+            Adicionar ao Carrinho
+          </button>
+          <Link
+            className={ styles.link }
+            to={ `/details/${productsList.id}` }
+            data-testid="product-detail-link"
+          >
+            Details
+          </Link>
+        </div>
       </div>
     );
   }
