@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addComment, setProductComments, getUserComment } from '../services/UserComments';
+import './userComments.css';
 
 class UserComments extends Component {
   constructor(props) {
@@ -52,8 +53,15 @@ class UserComments extends Component {
     const { comment, evaluation, email, productComments, hasComments } = this.state;
     return (
       <div>
+
         <form>
-          <div value={ evaluation } onChange={ this.handleChange } required>
+          <div
+            className="rating"
+            value={ evaluation }
+            onChange={ this.handleChange }
+            required
+          >
+
             <label htmlFor="1">
               1
               <input
@@ -132,13 +140,15 @@ class UserComments extends Component {
           <br />
           <button
             type="button"
+            className="button-comments"
             data-testid="submit-review-btn"
             onClick={ this.handleClick }
           >
             Enviar
           </button>
         </form>
-        <div>
+
+        <div className="comment-card">
           { hasComments ? productComments.map((userComment, index) => (
             <div key={ index }>
               <h4>{userComment.evaluation}</h4>
