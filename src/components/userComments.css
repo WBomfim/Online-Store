@@ -1,4 +1,13 @@
-* {
+/* * {
+  margin: 15px;
+} */
+
+.user-comments-container {
+  gap: 15px;
+  text-align: center;
+}
+
+.email-comment {
   margin: 15px;
 }
 
@@ -15,6 +24,7 @@
 .button-comments {
   background-color: rgb(40, 180, 40);
   border-radius: 35px;
+  margin: 15px;
   width: 90px;
 }
 
@@ -22,11 +32,11 @@
   border: 2px solid black;
 }
 
-div {
+/* div {
   display: flex;
   flex-flow: column;
 }
 
 label {
   margin: 10 px;
-}
+} */

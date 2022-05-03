@@ -52,7 +52,7 @@ class UserComments extends Component {
   render() {
     const { comment, evaluation, email, productComments, hasComments } = this.state;
     return (
-      <div>
+      <div className="user-comments-container">
 
         <form>
           <div
@@ -128,6 +128,7 @@ class UserComments extends Component {
           <label htmlFor="email">
             Seu Email:
             <input
+              className="email-comment"
               name="email"
               id="email"
               type="email"

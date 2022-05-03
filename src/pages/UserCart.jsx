@@ -94,7 +94,7 @@ class UserCart extends Component {
                 </button>
               </div>
               <p className={ style.containerTotalPrice }>
-                {`Valor total da Compra: R$ ${totalPrice}`}
+                {`Valor total da Compra: R$ ${totalPrice.toFixed(2)}`}
               </p>
               { productsCart.map((product, index) => (
                 <ShowCart
