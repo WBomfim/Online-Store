@@ -1,5 +1,4 @@
 .container {
-  /* width: 100%; */
   display: flex;
   text-align: center;
   flex-flow: column wrap;
@@ -87,7 +86,7 @@
   display: flex;
   justify-content: center;
   position: fixed;
-  top: -150%;
+  top: -200%;
   left: 0;
   transition: 850ms;
 }

@@ -21,7 +21,6 @@ class Home extends Component {
 
   componentDidMount() {
     this.numberItemsInCart();
-    this.test();
   }
 
   handleSearch = async () => {
@@ -37,12 +36,6 @@ class Home extends Component {
         productsList: products.results,
       });
     }
-  }
-
-  test = async () => {
-    const request = await fetch('https://api.mercadolibre.com/sites/MLA/domain_discovery/search?limit=1&q=celular%20iphone');
-    const response = await request.json();
-    console.log(response);
   }
 
   handleKey = async (e) => {

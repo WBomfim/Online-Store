@@ -1,4 +1,5 @@
 .container {
+  background-color: whitesmoke;
   width: 30%;
   display: flex;
   flex-flow: column;
