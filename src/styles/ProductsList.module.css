@@ -1,14 +1,14 @@
 .container {
+  align-self: stretch;
   background-color: whitesmoke;
-  width: 30%;
+  border-radius: 6px;
+  box-shadow: 0 0 1px 1px rgb(0 0 0 / 7%) , 0 10px 15px 0 rgb(0 0 0 / 10%);
   display: flex;
   flex-flow: column;
-  text-align: center;
-  align-self: stretch;
-  padding: 5px;
   margin-bottom: 15px;
-  border-radius: 6px;
-  box-shadow: 0 0 1px 1px rgb(0 0 0 / 7%), 0 10px 15px 0 rgb(0 0 0 / 10%);
+  padding: 5px;
+  text-align: center;
+  width: 30%;
 }
 
 .container img {
@@ -18,7 +18,7 @@
 }
 
 .container:hover {
-  box-shadow: 0 0 3px 3px rgb(0 0 0 / 30%), 0 10px 15px 0 rgb(0 0 0 / 40%);
+  box-shadow: 0 0 3px 3px rgb(0 0 0 / 30%) , 0 10px 15px 0 rgb(0 0 0 / 40%);
 }
 
 .userChoise {
@@ -28,9 +28,9 @@
 }
 
 .link {
-  text-decoration: none;
-  margin: auto;
   color: black;
+  margin: auto;
+  text-decoration: none;
 }
 
 .link:hover {
@@ -38,12 +38,12 @@
 }
 
 .addToCart {
-  margin: auto;
   background: none;
-  padding: 3px;
-  border-radius: 9999em;
   border: 1px solid #aaa;
+  border-radius: 9999em;
+  margin: auto;
   outline: none;
+  padding: 3px;
 }
 
 .addToCart:hover {
