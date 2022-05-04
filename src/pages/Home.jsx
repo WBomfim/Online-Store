@@ -140,25 +140,27 @@ class Home extends Component {
             </span>
           </div>
         </button>
-        <h3 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h3>
-        <div className={ styles.productsList }>
-          {noProducts
-            ? <p>Nenhum produto foi encontrado</p>
-            : productsList.map((product, index) => (
-              <ProductsList
-                key={ index }
-                productsList={ product }
-                addToCart={ this.addItemToCart }
-              />
-            )) }
-        </div>
-        <div>
-          <span className={ styles.menu }>
-            <h2>Categorias</h2>
-            <div className={ styles.icon }>
-              <div>
+        {productsList.length > 0 ? null : (
+          <h4 data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h4>
+        )}
+        <div className={ styles.mainProducts }>
+          <div className={ styles.productsList }>
+            {noProducts
+              ? <p>Nenhum produto foi encontrado</p>
+              : productsList.map((product, index) => (
+                <ProductsList
+                  key={ index }
+                  productsList={ product }
+                  addToCart={ this.addItemToCart }
+                />
+              )) }
+          </div>
+          <div className={ styles.categories }>
+            <span className={ styles.menu }>
+              <h2>Categorias</h2>
+              <div className={ styles.icon }>
                 { showBar ? <FaAngleUp
                   onClick={ this.ShowBar }
                   style={ { fontSize: '30px', color: 'black' } }
@@ -166,14 +168,14 @@ class Home extends Component {
                   onClick={ this.ShowBar }
                   style={ { fontSize: '30px', color: 'black' } }
                 />}
-
               </div>
-            </div>
 
-          </span>
-          <div className={ showBar ? styles.categoryMenuOn : styles.categoryMenuOff }>
-            <Categorias handleCategory={ this.handleCategory } />
+            </span>
+            <div className={ showBar ? styles.categoryMenuOn : styles.categoryMenuOff }>
+              <Categorias handleCategory={ this.handleCategory } />
+            </div>
           </div>
+
         </div>
       </div>
     );

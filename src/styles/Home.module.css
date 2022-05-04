@@ -60,6 +60,10 @@
   padding: 2px;
 }
 
+.mainProducts {
+  display: flex;
+}
+
 .menu {
   background-color: white;
   left: 1px;
@@ -76,7 +80,6 @@
 
 .categoryMenuOn {
   align-items: center;
-  bottom: 100%;
   display: flex;
   flex-flow: column;
   height: 100vh;
@@ -107,6 +110,80 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  margin: auto;
+  margin-left: 260px;
   text-align: center;
-  width: 50%;
+  width: 100%;
+}
+
+@media screen and ( max-width : 1066px ) {
+
+  .productsList {
+    margin-left: 260px;
+    width: 100%;
+  }
+}
+
+@media screen and ( max-width : 860px ) {
+
+  .productsList {
+    align-items: center;
+    flex-flow: column;
+    gap: 15px;
+    margin-left: unset;
+    width: 100%;
+  }
+
+  .categories {
+    align-items: center;
+    display: inline;
+    flex-flow: column;
+    max-width: 30%;
+    min-width: 190px;
+  }
+
+  .menu {
+    left: unset;
+    position: unset;
+    text-align: center;
+    top: unset;
+    width: 100%;
+    z-index: unset;
+  }
+
+  .menu h2 {
+    font-size: 20px;
+  }
+
+  .categoryMenuOn {
+    left: unset;
+    position: unset;
+    text-align: center;
+    top: unset;
+    width: 100%;
+  }
+
+  .categoryMenuOff {
+    display: none;
+    left: unset;
+    position: unset;
+    text-align: center;
+    top: unset;
+    width: 100%;
+  }
+
+  .mainProducts {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+  }
+}
+
+@media screen and ( max-width : 770px ) {
+
+  .productsList {
+    align-items: center;
+    flex-flow: column;
+    gap: 15px;
+  }
 }
