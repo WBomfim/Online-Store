@@ -104,32 +104,35 @@ class Home extends Component {
     return (
       <div className={ styles.container }>
         <span className={ styles.inputContainer }>
-          <input
-            data-testid="query-input"
-            className={ styles.searchInput }
-            type="text"
-            name="searchInput"
-            value={ searchInput }
-            onKeyPress={ this.handleKey }
-            onChange={ this.handleChange }
-          />
-          <button
-            className={ styles.searchBtn }
-            type="button"
-            data-testid="query-button"
-            onClick={ this.handleSearch }
-          >
-            <FaSearch style={ { fontSize: '20px' } } />
-          </button>
+          <div className={ styles.inputIcon }>
+            <button
+              className={ styles.searchBtn }
+              type="button"
+              data-testid="query-button"
+              onClick={ this.handleSearch }
+            >
+              <FaSearch style={ { fontSize: '18px' } } />
+            </button>
+            <input
+              data-testid="query-input"
+              className={ styles.searchInput }
+              type="text"
+              name="searchInput"
+              value={ searchInput }
+              onKeyPress={ this.handleKey }
+              onChange={ this.handleChange }
+            />
+
+          </div>
         </span>
         <button
           className={ styles.shoppingCartBtn }
           type="button"
         >
           <Link to="/cart" data-testid="shopping-cart-button">
-            <FaShoppingCart style={ { fontSize: '20px', color: 'black' } } />
+            <FaShoppingCart style={ { fontSize: '25px', color: 'black' } } />
           </Link>
-          <div>
+          <div className={ numberItemsInCart > 0 ? styles.shoppingCartNumber : null }>
             <span
               data-testid="shopping-cart-size"
             >

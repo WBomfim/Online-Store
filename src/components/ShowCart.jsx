@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getCartItems, addToCart, removeItemCart } from '../services/userCart';
+import {
+  getCartItems,
+  addToCart,
+  removeItemCart } from '../services/userCart';
 import style from './ShowCart.module.css';
 
 class ShowCart extends Component {
@@ -68,28 +71,36 @@ class ShowCart extends Component {
 
   render() {
     const { numberItem, isEnable } = this.state;
-    const { productsList } = this.props;
+    const { productsList, removeAll } = this.props;
 
     return (
       <div className={ style.container }>
-        <button
-          className={ style.buttonLeft }
-          type="button"
-          data-testid="product-decrease-quantity"
-          onClick={ this.handleQuantityMinus }
-        >
-          -
-        </button>
-        <span data-testid="shopping-cart-product-quantity">{ numberItem }</span>
-        <button
-          className={ style.buttonRight }
-          type="button"
-          data-testid="product-increase-quantity"
-          onClick={ this.handleQuantityPlus }
-          disabled={ isEnable }
-        >
-          +
-        </button>
+        <div className={ style.price }>
+          <div>
+            <button
+              className={ style.buttonLeft }
+              type="button"
+              data-testid="product-decrease-quantity"
+              onClick={ this.handleQuantityMinus }
+            >
+              -
+            </button>
+            <span data-testid="shopping-cart-product-quantity">{ numberItem }</span>
+            <button
+              className={ style.buttonRight }
+              type="button"
+              data-testid="product-increase-quantity"
+              onClick={ this.handleQuantityPlus }
+              disabled={ isEnable }
+            >
+              +
+            </button>
+          </div>
+          <h3>
+            {`R$${productsList.price}`}
+          </h3>
+
+        </div>
         <h2 data-testid="shopping-cart-product-name">
           { productsList.title }
         </h2>
@@ -97,13 +108,10 @@ class ShowCart extends Component {
           src={ productsList.thumbnail }
           alt={ productsList.title }
         />
-        <h3>
-          {`R$${productsList.price}`}
-        </h3>
         <button
           className={ style.buttonRemove }
           type="button"
-          onClick={ () => removeItemCart(productsList) }
+          onClick={ () => removeAll(productsList) }
         >
           Remover Item
         </button>
@@ -114,6 +122,7 @@ class ShowCart extends Component {
 }
 
 ShowCart.propTypes = {
+  removeAll: PropTypes.func.isRequired,
   productsList: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,

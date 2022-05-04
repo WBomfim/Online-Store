@@ -26,6 +26,14 @@ class DetailsProducts extends React.Component {
     this.numberItemsInCart();
   }
 
+  componentDidUpdate() {
+  }
+
+  addItemToCart = (product) => {
+    addToCart(product);
+    this.numberItemsInCart();
+  }
+
   numberItemsInCart = () => {
     this.setState({
       numberItemsInCart: getCartItems().length,
@@ -58,28 +66,31 @@ class DetailsProducts extends React.Component {
     return (
       <div className="container-details">
         <header className="detail-shopping-cart">
-          <Link
-            to="/cart"
-            data-testid="shopping-cart-button"
+          <button
+            className="shoppingCartBtn"
+            type="button"
           >
-            <FaShoppingCart style={ { fontSize: '20px', color: 'black' } } />
-
-          </Link>
-          <span
-            data-testid="shopping-cart-size"
-          >
-            { numberItemsInCart === 0 ? null : numberItemsInCart }
-          </span>
+            <Link to="/cart" data-testid="shopping-cart-button">
+              <FaShoppingCart style={ { fontSize: '25px', color: 'black' } } />
+            </Link>
+            <div className={ numberItemsInCart > 0 ? 'shoppingCartNumber' : null }>
+              <span
+                data-testid="shopping-cart-size"
+              >
+                { numberItemsInCart === 0 ? null : numberItemsInCart }
+              </span>
+            </div>
+          </button>
         </header>
-        <p
-          data-testid="product-detail-name"
-          className="products-detail-text"
-        >
-          { productsDetail.title }
+        <section className="product-section">
 
-        </p>
-        <p>
+          <p
+            data-testid="product-detail-name"
+            className="products-detail-text"
+          >
+            { productsDetail.title }
 
+          </p>
           {shippingDetail.free_shipping
           && (
             <p
@@ -90,23 +101,22 @@ class DetailsProducts extends React.Component {
 
             </p>
           )}
-
-        </p>
-        <div className="img-frame">
-          <img src={ productsDetail.thumbnail } alt={ productsDetail.title } />
-        </div>
-        <p className="products-detail-text">{productsDetail.price}</p>
-        <p className="products-detail-text">{`Em estoque: ${theAmount} unidades`}</p>
-        <div className="button-frame">
-          <button
-            type="button"
-            className="button-details"
-            data-testid="product-detail-add-to-cart"
-            onClick={ () => addToCart(productsDetail) }
-          >
-            Adicionar ao carrinho
-          </button>
-        </div>
+          <div className="img-frame">
+            <img src={ productsDetail.thumbnail } alt={ productsDetail.title } />
+          </div>
+          <p className="products-detail-text">{productsDetail.price}</p>
+          <p className="products-detail-text">{`Em estoque: ${theAmount} unidades`}</p>
+          <div className="button-frame">
+            <button
+              type="button"
+              className="button-details"
+              data-testid="product-detail-add-to-cart"
+              onClick={ () => this.addItemToCart(productsDetail) }
+            >
+              Adicionar ao carrinho
+            </button>
+          </div>
+        </section>
 
         <UserComments itemId={ id } />
       </div>

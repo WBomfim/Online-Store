@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaStar } from 'react-icons/fa';
 import { addComment, setProductComments, getUserComment } from '../services/UserComments';
 import './userComments.css';
 
@@ -47,6 +48,14 @@ class UserComments extends Component {
     this.setState({
       comment: '',
     });
+  }
+
+  starExhibition = (star) => {
+    const number = [];
+    for (let i = 0; i < star; i += 1) {
+      number.push(<FaStar />);
+    }
+    return number;
   }
 
   render() {
@@ -117,7 +126,7 @@ class UserComments extends Component {
           <textarea
             name="comment"
             data-testid="product-detail-evaluation"
-            id=""
+            className="comment-area"
             cols="30"
             rows="10"
             value={ comment }
@@ -151,9 +160,15 @@ class UserComments extends Component {
 
         <div className="comment-card">
           { hasComments ? productComments.map((userComment, index) => (
-            <div key={ index }>
-              <h4>{userComment.evaluation}</h4>
-              <p>{ userComment.comment }</p>
+            <div className="user-comment" key={ index }>
+              <h4>
+                {this.starExhibition(userComment.evaluation)}
+              </h4>
+              <p>
+                Comentário:
+                {' '}
+                { userComment.comment }
+              </p>
               <p>{ userComment.email }</p>
 
             </div>
