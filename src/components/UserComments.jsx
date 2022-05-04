@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
 import { addComment, setProductComments, getUserComment } from '../services/UserComments';
-import './userComments.css';
+import '../styles/userComments.css';
 
 class UserComments extends Component {
   constructor(props) {

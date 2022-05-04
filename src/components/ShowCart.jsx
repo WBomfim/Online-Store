@@ -4,7 +4,7 @@ import {
   getCartItems,
   addToCart,
   removeItemCart } from '../services/userCart';
-import style from './ShowCart.module.css';
+import style from '../styles/ShowCart.module.css';
 
 class ShowCart extends Component {
   constructor(props) {

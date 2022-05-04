@@ -5,7 +5,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { GiReturnArrow } from 'react-icons/gi';
 import { getCartItems, removeItemAll } from '../services/userCart';
 import ShowCart from '../components/ShowCart';
-import style from './UserCart.module.css';
+import style from '../styles/UserCart.module.css';
 
 class UserCart extends Component {
   constructor() {

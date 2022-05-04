@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FaShoppingCart } from 'react-icons/fa';
 import UserComments from '../components/UserComments';
 import { addToCart, getCartItems } from '../services/userCart';
-import './DetailsProducts.css';
+import '../styles/DetailsProducts.css';
 
 class DetailsProducts extends React.Component {
   constructor() {

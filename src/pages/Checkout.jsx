@@ -5,7 +5,7 @@ import ShowProductsCheckout from '../components/ShowProductsCheckout';
 import PurchaseForm from '../components/PurchaseForm';
 import PaymentMethod from '../components/PaymentMethod';
 import checkPurchaseForm from '../helpers/checkForms';
-import './Checkout.css';
+import '../styles/Checkout.css';
 
 class Checkout extends Component {
   constructor() {
