@@ -53,7 +53,7 @@ class UserComments extends Component {
   starExhibition = (star) => {
     const number = [];
     for (let i = 0; i < star; i += 1) {
-      number.push(<FaStar />);
+      number.push(<FaStar key={ `${i * i}` } />);
     }
     return number;
   }
@@ -165,8 +165,6 @@ class UserComments extends Component {
                 {this.starExhibition(userComment.evaluation)}
               </h4>
               <p>
-                Comentário:
-                {' '}
                 { userComment.comment }
               </p>
               <p>{ userComment.email }</p>
