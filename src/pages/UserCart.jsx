@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { getCartItems } from '../services/userCart';
+import { GiReturnArrow } from 'react-icons/gi';
+import { getCartItems, removeItemAll } from '../services/userCart';
 import ShowCart from '../components/ShowCart';
-import style from './UserCart.module.css';
+import style from '../styles/UserCart.module.css';
 
 class UserCart extends Component {
   constructor() {
@@ -46,6 +47,11 @@ class UserCart extends Component {
     }
   }
 
+  removeAll = (productId) => {
+    removeItemAll(productId);
+    this.getListCart();
+  }
+
   directionCheckout = () => {
     const { history } = this.props;
     history.push('/checkout');
@@ -67,10 +73,16 @@ class UserCart extends Component {
 
     return (
       <div className={ style.container }>
-        <Link to="/">Voltar à home</Link>
+        <Link className={ style.homeLink } to="/">
+          <GiReturnArrow />
+          {' '}
+          Voltar à home
+        </Link>
         <br />
         <div className={ style.containerCar }>
-          <AiOutlineShoppingCart style={ { fontSize: '80px', color: 'black' } } />
+          <AiOutlineShoppingCart
+            className={ style.containerCarIcon }
+          />
           <p>Carrinho de compras</p>
         </div>
         { noProducts
@@ -94,12 +106,13 @@ class UserCart extends Component {
                 </button>
               </div>
               <p className={ style.containerTotalPrice }>
-                {`Valor total da Compra: R$ ${totalPrice}`}
+                {`Valor total da Compra: R$ ${totalPrice.toFixed(2)}`}
               </p>
               { productsCart.map((product, index) => (
                 <ShowCart
                   key={ index }
                   productsList={ product }
+                  removeAll={ this.removeAll }
                 />
               ))}
             </>)}

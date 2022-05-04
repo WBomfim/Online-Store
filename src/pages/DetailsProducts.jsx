@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { FaShoppingCart } from 'react-icons/fa';
 import UserComments from '../components/UserComments';
 import { addToCart, getCartItems } from '../services/userCart';
-import './DetailsProducts.css';
+import '../styles/DetailsProducts.css';
 
 class DetailsProducts extends React.Component {
   constructor() {
@@ -22,6 +23,14 @@ class DetailsProducts extends React.Component {
   componentDidMount() {
     this.renderProduct();
     this.renderShipping();
+    this.numberItemsInCart();
+  }
+
+  componentDidUpdate() {
+  }
+
+  addItemToCart = (product) => {
+    addToCart(product);
     this.numberItemsInCart();
   }
 
@@ -55,37 +64,59 @@ class DetailsProducts extends React.Component {
     const { match: { params: { id } } } = this.props;
 
     return (
-      <div className="detail-container">
-        <header>
-          <span
-            data-testid="shopping-cart-size"
-          >
-            { numberItemsInCart === 0 ? null : numberItemsInCart }
-          </span>
-          <Link to="/cart" data-testid="shopping-cart-button">Carrinho de compra</Link>
-        </header>
-        <p data-testid="product-detail-name">{ productsDetail.title }</p>
-        <p>
-
-          {shippingDetail.free_shipping
-          && <p data-testid="free-shipping">Frete Grátis</p>}
-
-        </p>
-        <div className="img-frame">
-          <img src={ productsDetail.thumbnail } alt={ productsDetail.title } />
-        </div>
-        <p>{productsDetail.price}</p>
-        <p>{`Em estoque: ${theAmount} unidades`}</p>
-        <div className="button-frame">
+      <div className="container-details">
+        <header className="detail-shopping-cart">
           <button
+            className="shoppingCartBtn"
             type="button"
-            className="button-details"
-            data-testid="product-detail-add-to-cart"
-            onClick={ () => addToCart(productsDetail) }
           >
-            Adicionar ao carrinho
+            <Link to="/cart" data-testid="shopping-cart-button">
+              <FaShoppingCart style={ { fontSize: '25px', color: 'black' } } />
+            </Link>
+            <div className={ numberItemsInCart > 0 ? 'shoppingCartNumber' : null }>
+              <span
+                data-testid="shopping-cart-size"
+              >
+                { numberItemsInCart === 0 ? null : numberItemsInCart }
+              </span>
+            </div>
           </button>
-        </div>
+        </header>
+        <section className="product-section">
+
+          <p
+            data-testid="product-detail-name"
+            className="products-detail-text"
+          >
+            { productsDetail.title }
+
+          </p>
+          {shippingDetail.free_shipping
+          && (
+            <p
+              className="products-detail-text"
+              data-testid="free-shipping"
+            >
+              Frete Grátis
+
+            </p>
+          )}
+          <div className="img-frame">
+            <img src={ productsDetail.thumbnail } alt={ productsDetail.title } />
+          </div>
+          <p className="products-detail-text">{productsDetail.price}</p>
+          <p className="products-detail-text">{`Em estoque: ${theAmount} unidades`}</p>
+          <div className="button-frame">
+            <button
+              type="button"
+              className="button-details"
+              data-testid="product-detail-add-to-cart"
+              onClick={ () => this.addItemToCart(productsDetail) }
+            >
+              Adicionar ao carrinho
+            </button>
+          </div>
+        </section>
 
         <UserComments itemId={ id } />
       </div>

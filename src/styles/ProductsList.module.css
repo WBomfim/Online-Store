@@ -50,3 +50,25 @@
   border-color: dodgerblue;
   box-shadow: 0 0 2px 0 dodgerblue;
 }
+
+@media screen and ( max-width : 860px ) {
+
+  .container {
+    margin: auto;
+    width: 90%;
+  }
+
+  .container h3 {
+    font-size: 15px;
+  }
+
+  .userChoise {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .userChoise button {
+    font-size: 12px;
+    padding: 5px;
+  }
+}

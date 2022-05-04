@@ -1,0 +1,83 @@
+.container-details {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 15px;
+}
+
+.product-section {
+  background-color: whitesmoke;
+  border: solid rgb(185, 185, 185) 1px;
+  border-radius: 18px;
+  box-shadow: 15px 10px 10px grey;
+  margin: 30px auto 10px;
+  padding: 15px;
+  width: 30%;
+}
+
+.button-frame {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.button-details {
+  background-color: rgb(40, 180, 40);
+  border-radius: 35px;
+  width: 90px;
+}
+
+.products-detail-text {
+  align-self: center;
+  text-align: center;
+}
+
+.img-frame {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  justify-content: center;
+  width: 100%;
+}
+
+[ type = 'radio' ] {
+  margin: 5 px;
+  padding: 5 px;
+}
+
+.detail-shopping-cart {
+  align-items: flex-end;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  width: 80%;
+}
+
+.shoppingCartBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.shoppingCartNumber {
+  align-self: center;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  min-width: 50%;
+  padding: 2px;
+}
+
+@media screen and ( max-width : 770px ) {
+
+  .product-section {
+    width: 60%;
+  }
+}

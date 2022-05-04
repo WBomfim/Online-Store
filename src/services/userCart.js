@@ -22,8 +22,15 @@ const removeItemCart = (productId) => {
   localStorage.setItem('userCart', JSON.stringify(newCartItems));
 };
 
+const removeItemAll = (productId) => {
+  const cartItems = getCartItems();
+  const cartItemsFilter = cartItems
+    .filter((element) => element.id !== productId.id);
+  localStorage.setItem('userCart', JSON.stringify(cartItemsFilter));
+};
+
 const clearCart = () => {
   localStorage.setItem('userCart', JSON.stringify([]));
 };
 
-export { addToCart, getCartItems, removeItemCart, clearCart };
+export { addToCart, getCartItems, removeItemCart, clearCart, removeItemAll };

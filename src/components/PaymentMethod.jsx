@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaBarcode, FaCcVisa, FaCcMastercard } from 'react-icons/fa';
 import EloIcon from '../imagens/elo_icon.png';
-import './PaymentMethod.css';
+import '../styles/PaymentMethod.css';
 
 class PaymentMethod extends Component {
   render() {

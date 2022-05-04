@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './PurchaseForm.css';
+import '../styles/PurchaseForm.css';
 
 class PurchaseForm extends Component {
   render() {

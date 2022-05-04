@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getCartItems } from '../services/userCart';
-import './ShowProductsCheckout.css';
+import '../styles/ShowProductsCheckout.css';
 
 class ShowProductsCheckout extends Component {
   constructor() {

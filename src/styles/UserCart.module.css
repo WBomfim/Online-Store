@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.homeLink {
+  align-self: center;
+  background-color: rgb(233, 230, 230);
+  border: 1px solid grey;
+  border-radius: 6px;
+  color: black;
+  font-size: 18px;
+  margin-top: 12px;
+  padding: 5px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.containerCar {
+  align-self: center;
+  display: flex;
+}
+
+.containerCar p {
+  font-size: 40px;
+  margin-left: 40px;
+}
+
+.container img {
+  height: auto;
+  max-height: 150px;
+  max-width: 200px;
+  width: auto;
+}
+
+.container div {
+  align-items: center;
+  display: flex;
+  padding: 4px;
+}
+
+.buttonFinCompra {
+  border: 1px solid gray;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 25px;
+  margin: 50px auto;
+  padding: 10px;
+  width: 20%;
+}
+
+.btnFinalizarCompra {
+  order: 4;
+}
+
+.containerTotalPrice {
+  color: black;
+  font-size: 40px;
+  order: 3;
+}
+
+.containerCarIcon {
+  font-size: 80px;
+}
+
+@media screen and ( max-width : 770px ) {
+
+  .containerCar p {
+    font-size: 30px;
+  }
+
+  .containerCarIcon {
+    font-size: 40px;
+  }
+
+  .containerTotalPrice {
+    font-size: 30px;
+  }
+
+  .buttonFinCompra {
+    font-size: 20px;
+    width: 40%;
+  }
+}

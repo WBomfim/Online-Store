@@ -12,11 +12,7 @@ class ProductsList extends Component {
         <h3 data-testid="shopping-cart-product-name">
           { productsList.title }
         </h3>
-        <h2>
-
-          {shipping.free_shipping && <p data-testid="free-shipping">Frete Grátis</p>}
-
-        </h2>
+        {shipping.free_shipping && <p data-testid="free-shipping">Frete Grátis</p>}
         <img
           src={ productsList.thumbnail }
           alt={ productsList.title }
@@ -24,7 +20,7 @@ class ProductsList extends Component {
         <h3>
           Preço:
           {' '}
-          { productsList.price }
+          { productsList.price.toFixed(2) }
         </h3>
         <div className={ styles.userChoise }>
           <button

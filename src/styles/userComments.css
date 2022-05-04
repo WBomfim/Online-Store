@@ -1,0 +1,59 @@
+.user-comments-container {
+  gap: 15px;
+  text-align: center;
+}
+
+.email-comment {
+  border: 1px solid grey;
+  border-radius: 6px;
+  margin: 15px;
+  padding: 5px;
+}
+
+[ type = ' radio ' ] {
+  margin: 10 px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
+  margin: auto;
+  width: 30%;
+}
+
+.button-comments {
+  background-color: rgb(40, 180, 40);
+  border-radius: 35px;
+  margin: 15px;
+  width: 90px;
+}
+
+.comment-card {
+  border: 2px solid black;
+  border-radius: 18px;
+  margin: auto;
+  width: 70%;
+}
+
+.user-comment {
+  background-color: whitesmoke;
+  border: solid rgb(185, 185, 185) 1px;
+  border-radius: 18px;
+  box-shadow: 15px 10px 10px grey;
+  margin: 30px auto 10px;
+  width: 90%;
+}
+
+.comment-area {
+  border-radius: 18px;
+  padding: 15px;
+}
+
+@media screen and ( max-width : 770px ) {
+
+  .user-comment {
+    box-shadow: none;
+  }
+}
